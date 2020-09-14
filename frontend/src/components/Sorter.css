@@ -1,0 +1,11 @@
+.sorter {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	margin: 1em auto;
+}
+
+.sorttypes {
+	margin-left: 1em;
+}

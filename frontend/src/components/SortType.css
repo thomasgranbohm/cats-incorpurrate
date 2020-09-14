@@ -1,0 +1,25 @@
+.sorttype {
+	border: none;
+	padding: 0.5em 1em;
+
+	background-color: var(--secondary-background-color);
+	color: var(--primary-color);
+}
+
+.sorttype:hover {
+	background-color: var(--background-color);
+}
+
+.sorttype.selected {
+	background-color: lightgreen;
+	color: black;
+}
+
+@media only screen and (min-width: 600px ) {
+	.sorttype:first-of-type {
+		border-radius: 0.4em 0 0 0.4em;
+	}
+	.sorttype:last-of-type {
+		border-radius:  0 0.4em 0.4em 0 ;
+	}
+}
