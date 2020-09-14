@@ -39,7 +39,7 @@ export const SortTypes = [
 
 export const FilterTypes = [
 	{
-		value: "Allergy fur",
+		value: "Allergy inducing fur",
 		f: (a) => a.allergyInducingFur
 	},
 	{

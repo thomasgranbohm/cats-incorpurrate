@@ -1,9 +1,21 @@
-# Delorean AB
+# Work test for Delorean AB
 Made by Thomas Granbohm
 
-## Instructions
-You have been assigned a task from Cats IncorpurrateTM.
-You have been supplied with the following instructions.
+## 🚀 Setup  
+If you have Docker, run this command in this directory:   
+```
+docker-compose up -d
+```  
+The app will then run at http://localhost/.   
+  
+If you do not want to run this app with Docker, you can start both.   
+In the backend directory, run: `go run webserver.go`  
+In the frontend directory, run: `yarn start` or `npm start`  
+
+
+## 🚧 Instructions
+You have been assigned a task from Cats IncorpurrateTM.  
+You have been supplied with the following instructions.  
 Below is a UI mockup of an interface.  
 
 ### Step 1  
@@ -15,8 +27,6 @@ You are given images of cats (/images/*), and data of cats (catdata.json).
  	- Level of cuteness descending
  - Use whatever JavaScript technique you are comfortable with, except jQuery.
  - The UI mockup is the MVP. If you want to add something extra, feel free, as it will only please Cats IncorpurrateTM.
-
-UI Mockup:
 
 ### Step 2  
 Management has a specific request for backend technology used. Don’t worry, this is

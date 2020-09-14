@@ -34,6 +34,12 @@ export default class Gallery extends Component {
 		this.setState({ cats });
 	}
 
+	/* 
+	 * Disclaimer: filtreringen och sorteringen kunde ha gjorts backend.
+	 * Men eftersom att det inte var så mycket data valde jag att göra det frontend för att minimera antalet requests till APIn.
+	 * Om det skulle röra sig om mera data eller behov av paginering skulle detta såklart flyttas till backenden.
+	 */
+
 	onSortTypeChange(sortValue) {
 		let sortType = this.state.sortTypes
 			.find((sortType) => sortType.value === sortValue);
