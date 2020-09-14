@@ -1,4 +1,6 @@
-.sorttype {
+.selector {
+	min-width: 6em;
+
 	border: none;
 	padding: 0.5em 1em;
 
@@ -6,20 +8,25 @@
 	color: var(--primary-color);
 }
 
-.sorttype:hover {
+.selector:not(.selected):hover {
 	background-color: var(--background-color);
+	filter: invert(1);
 }
 
-.sorttype.selected {
+.selector.selected {
 	background-color: lightgreen;
 	color: black;
 }
 
-@media only screen and (min-width: 600px ) {
-	.sorttype:first-of-type {
+.selector:first-of-type {
+	margin-left: 1em;
+}
+
+@media only screen and (min-width: 600px) {
+	.selector:first-of-type {
 		border-radius: 0.4em 0 0 0.4em;
 	}
-	.sorttype:last-of-type {
+	.selector:last-of-type {
 		border-radius:  0 0.4em 0.4em 0 ;
 	}
 }

@@ -1,41 +1,25 @@
 import React, { Component } from 'react'
-import Sorter from './Sorter';
 import "./Gallery.css";
 
 import Cat from "./Cat";
 import Axios from 'axios';
 
+import { FilterTypes, SortTypes } from '../types';
+import SelectorContainer from './SelectorContainer';
+
 export default class Gallery extends Component {
 	constructor() {
 		super();
 
-		this.onRadioChange = this.onRadioChange.bind(this);
+		this.onSortTypeChange = this.onSortTypeChange.bind(this);
+		this.onFilterTypeChange = this.onFilterTypeChange.bind(this);
 
 		this.state = {
 			cats: undefined,
-			sortTypes: [
-				{
-					value: "None",
-					f: (a, b) => 1
-				},
-				{
-					value: "Much cute",
-					f: (a, b) => (b.cutenessLevel - a.cutenessLevel)
-				},
-				{
-					value: "Cuten't",
-					f: (a, b) => (a.cutenessLevel - b.cutenessLevel)
-				},
-				{
-					value: "Very life",
-					f: (a, b) => (b.livesLeft - a.livesLeft)
-				},
-				{
-					value: "No-life",
-					f: (a, b) => (a.livesLeft - b.livesLeft)
-				}
-			],
-			selectedSortType: "None"
+			sortTypes: SortTypes,
+			selectedST: undefined,
+			filterTypes: FilterTypes,
+			selectedFT: undefined
 		}
 	}
 
@@ -44,18 +28,25 @@ export default class Gallery extends Component {
 		try {
 			let resp = await Axios.get('/catdata.json');
 			cats = resp.data.cats;
-
-			// TODO message if no cast
 		} catch (err) {
 			console.error(err)
 		}
 		this.setState({ cats });
 	}
 
-	onRadioChange(sortValue) {
-		let sortType = this.state.sortTypes.find((sortType) => sortType.value === sortValue);
+	onSortTypeChange(sortValue) {
+		let sortType = this.state.sortTypes
+			.find((sortType) => sortType.value === sortValue);
+		if (sortType === this.state.selectedST) sortType = undefined;
+		this.setState({ selectedST: sortType })
+	}
 
-		this.setState({ selectedSortType: sortType })
+	onFilterTypeChange(filterValue) {
+
+		let filterType = this.state.filterTypes
+			.find((filterType) => filterType.value === filterValue);
+		if (filterType === this.state.selectedFT) filterType = undefined;
+		this.setState({ selectedFT: filterType });
 	}
 
 	render() {
@@ -77,15 +68,24 @@ export default class Gallery extends Component {
 			)
 		}
 
-		const { selectedSortType } = this.state;
+		const { selectedST, selectedFT } = this.state;
+		if (selectedST) cats = cats.sort(selectedST.f);
+		if (selectedFT) cats = cats.filter(selectedFT.f);
 
-		if (selectedSortType) cats = cats.sort(selectedSortType.f);
 		return (
 			<div className="gallery">
-				<Sorter
-					sortTypes={this.state.sortTypes}
-					selectedSortType={selectedSortType.value}
-					onChange={this.onRadioChange} />
+				<div className="selectorContainers">
+					<SelectorContainer
+						title={"Filters"}
+						array={this.state.filterTypes}
+						selected={selectedFT}
+						onChange={this.onFilterTypeChange} />
+					<SelectorContainer
+						title={"Sorting"}
+						array={this.state.sortTypes}
+						selected={selectedST}
+						onChange={this.onSortTypeChange} />
+				</div>
 				<div className="cats">
 					{cats.map((info, i) => <Cat key={`Cat-#${i}`} info={info} />)}
 				</div>

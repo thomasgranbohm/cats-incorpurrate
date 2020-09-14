@@ -5,6 +5,13 @@
 	align-items: center;
 }
 
+.selectorContainers {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
 .cats {
 	width: 100%;
 
