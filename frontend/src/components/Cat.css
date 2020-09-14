@@ -16,7 +16,7 @@ grid-area: image;
 	width: 12rem;
 	height: 12rem;
 
-	background: no-repeat center url("/images/404-doge.png");
+	background: no-repeat center url("http://localhost:1337/images/404.png");
 	background-size: contain;
 
 	display: flex;

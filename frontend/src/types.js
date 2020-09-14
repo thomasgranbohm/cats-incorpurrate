@@ -1,7 +1,7 @@
 export const SortTypes = [
 	{
 		value: "None",
-		f: (a, b) => 1
+		f: (a, b) => 0
 	},
 	{
 		value: "Much cute",
@@ -43,7 +43,7 @@ export const FilterTypes = [
 		f: (a) => a.allergyInducingFur
 	},
 	{
-		value: "Clean fur",
+		value: "Free fur all",
 		f: (a) => !a.allergyInducingFur
 	},
 ];

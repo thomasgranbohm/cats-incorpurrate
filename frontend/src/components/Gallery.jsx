@@ -17,7 +17,7 @@ export default class Gallery extends Component {
 		this.state = {
 			cats: undefined,
 			sortTypes: SortTypes,
-			selectedST: undefined,
+			selectedST: SortTypes[0],
 			filterTypes: FilterTypes,
 			selectedFT: undefined
 		}
@@ -26,7 +26,7 @@ export default class Gallery extends Component {
 	async componentDidMount() {
 		let cats = []
 		try {
-			let resp = await Axios.get('/catdata.json');
+			let resp = await Axios.get("http://localhost:1337/data.json");
 			cats = resp.data.cats;
 		} catch (err) {
 			console.error(err)
@@ -37,12 +37,10 @@ export default class Gallery extends Component {
 	onSortTypeChange(sortValue) {
 		let sortType = this.state.sortTypes
 			.find((sortType) => sortType.value === sortValue);
-		if (sortType === this.state.selectedST) sortType = undefined;
 		this.setState({ selectedST: sortType })
 	}
 
 	onFilterTypeChange(filterValue) {
-
 		let filterType = this.state.filterTypes
 			.find((filterType) => filterType.value === filterValue);
 		if (filterType === this.state.selectedFT) filterType = undefined;

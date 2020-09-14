@@ -6,7 +6,7 @@ export default function Cat(props) {
 	const { info } = props;
 	return (
 		<div className="cat">
-			<img src={`/images/${info.image}`} alt={info.name} />
+			<img src={`http://localhost:1337/images/${info.image}`} alt={info.name} />
 			<div className="info">
 				<h3 className="name">{info.name}</h3>
 				<p><b>Cuteness level:</b> {info.cutenessLevel}</p>
