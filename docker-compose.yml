@@ -1,0 +1,12 @@
+version: '3.7'
+services: 
+    backend:
+        container_name: "cats-backend"
+        build: backend/
+        ports: 
+            - "1337:1337"
+    frontend: 
+        container_name: "cats-frontend"
+        build: frontend/
+        ports:
+            - "80:80"
